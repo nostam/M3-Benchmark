@@ -68,3 +68,13 @@ hr {
 .setting-text-secondary {
   color: #b3b3b3;
 }
+
+/* footer css */
+#footer img {
+  margin: auto 8px;
+  fill: white;
+}
+#footer p {
+  line-height: 2rem;
+  color: #aaa;
+}
