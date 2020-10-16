@@ -1,0 +1,57 @@
+:root {
+  --netflix-bg: #141414;
+  --netflix-logo-text: #d1111c;
+}
+
+.navbar {
+  background-color: var(--netflix-bg);
+}
+
+body {
+  color: grey;
+  background-color: #141414;
+}
+
+.navbar .disabled a,
+.navbar .disabled {
+  color: #686868;
+}
+
+.navbar .disabled a:hover,
+.navbar .disabled a:focus,
+.navbar .disabled:hover,
+.navbar .disabled:focus {
+  color: white;
+  opacity: 80%;
+}
+
+.navbar a,
+.navbar .active a,
+.navbar .active {
+  color: white;
+}
+
+.row {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+h1 {
+  color: white;
+}
+
+hr {
+  /* color: grey; */
+  border: 1px solid#3c3c3c;
+}
+input[type="checkbox"] {
+  transform: scale(2);
+  filter: grayscale(100%);
+}
+
+#pencil {
+  position: absolute;
+  display: flex;
+  top: 90px;
+  left: 4px;
+}
