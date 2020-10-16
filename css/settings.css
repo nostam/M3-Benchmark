@@ -44,3 +44,27 @@ hr {
   color: silver;
   border: 1px solid silver;
 }
+
+.btn-silver {
+  background: #efefef;
+  border-bottom: 1px solid grey;
+}
+
+.btn-silver:hover,
+.btn-silver:focus {
+  background: #fff;
+  border: 1px solid grey;
+}
+
+#paypal,
+#ultraHD {
+  filter: brightness(0%);
+}
+
+.setting-left {
+  text-align: end;
+}
+
+.setting-text-secondary {
+  color: #b3b3b3;
+}
