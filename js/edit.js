@@ -100,11 +100,13 @@ window.onload = async () => {
         document.querySelector("#description").value = movie.description;
         let cat = document.querySelector("#category");
         let arr = cat.options;
-        document.querySelector("#category").selectedIndex =        for (option of arr) {
+        let g;
+        for (option of arr) {
           if (option.value.toLowerCase() === genre) {
-            return option.index;
+            g = option.index;
           }
         }
+        document.querySelector("#category").selectedIndex = g;
         document.querySelector("#imageUrl").value = movie.imageUrl;
       } else {
         throw Error("ID does not match");
