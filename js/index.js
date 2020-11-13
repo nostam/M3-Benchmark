@@ -15,7 +15,6 @@ const errBadge = (msg) => {
   document.getElementById("navbar").append(danger);
 };
 const addToShelf = (p, genre) => {
-  console.log(p);
   let movie = document.createElement("div");
   movie.classList.add("col", "mx-2", "my-5");
   movie.innerHTML = `
@@ -47,7 +46,6 @@ const addToShelf = (p, genre) => {
   return movie;
 };
 const handleGenre = async (genre = anime) => {
-  console.log(genre);
   let contentLoadingSpinner = document.getElementById("contentLoadingSpinner");
   const url = "https://striveschool-api.herokuapp.com/api/movies/" + genre;
   try {
@@ -56,7 +54,7 @@ const handleGenre = async (genre = anime) => {
       headers: myHeaders,
     });
     let payload = await response.json();
-    if (payload.length > 0) {
+    if (response.ok) {
       payload.sort((a, b) =>
         a.updatedAt > b.updatedAt ? -1 : a.updatedAt < b.updatedAt ? 1 : 0
       );

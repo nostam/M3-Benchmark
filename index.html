@@ -47,26 +47,29 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div
+          class="navbar-collapse navbar-expand-lg"
+          id="navbarSupportedContent"
+        >
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item disabled">
+            <li class="nav-item disabled text-nowrap align-items-center">
               <a class="nav-link" href="./index.html"
                 >Home <span class="sr-only">(current)</span></a
               >
             </li>
-            <li class="nav-item active">
+            <li class="nav-item active text-nowrap">
               <a class="nav-link" href="#">TV Shows</a>
             </li>
-            <li class="nav-item disabled">
+            <li class="nav-item disabled text-nowrap">
               <a class="nav-link" href="#">Movies</a>
             </li>
-            <li class="nav-item disabled">
+            <li class="nav-item disabled text-nowrap">
               <a class="nav-link" href="#">Recently Added</a>
             </li>
-            <li class="nav-item disabled">
+            <li class="nav-item disabled text-nowrap">
               <a class="nav-link" href="#">My List</a>
             </li>
-            <li class="nav-item disabled">
+            <li class="nav-item disabled text-nowrap">
               <a class="nav-link" href="#">Link</a>
             </li>
             <li class="nav-item">
@@ -75,51 +78,32 @@
           </ul>
           <ul class="navbar-nav ml-auto">
             <!--search / hidden on settings-->
-            <div id="navRight" class="row mr-auto mt-2">
-              <li class="nav-item mx-2">
-                <svg
-                  width="1.2em"
-                  height="1.2em"
-                  viewBox="0 0 16 16"
-                  class="bi bi-search"
-                  fill="white"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"
-                  />
-                  <path
-                    fill-rule="evenodd"
-                    d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"
-                  />
-                </svg>
+            <div id="navRight" class="row mr-auto">
+              <li class="nav-item mx-2 align-items-center">
+                <input
+                  type="text"
+                  class="form-control ml-auto"
+                  placeholder="Search Movies"
+                  aria-label="search"
+                  aria-describedby="basic-search"
+                />
               </li>
-              <li class="nav-item">
+              <li class="nav-item align-self-center">
                 <div
                   id="navbar-userID"
-                  class="nav-item h6 mx-2 mt-1"
+                  class="nav-item h6 mx-2"
                   style="color: #d3d3d3"
                 >
                   KIDS
                 </div>
               </li>
               <!-- bell--->
-              <li class="nav-item mx-2">
-                <svg
-                  width="1.2em"
-                  height="1.2em"
-                  viewBox="0 0 16 16"
-                  class="bi bi-bell-fill"
-                  fill="white"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"
-                  />
-                </svg>
+              <li
+                class="nav-item mx-2 align-self-center navbar-expand-lg navbar-collapse"
+              >
+                <i class="fa fa-bell text-white"></i>
               </li>
-            </div>
+
             <li class="navbar-brand nav-item dropdown ml-2">
               <a
                 class="dropdown-toggle"
