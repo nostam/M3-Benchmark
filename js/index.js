@@ -31,7 +31,7 @@ const addToShelf = (p, genre) => {
               <!-- <i class="fa fa-plus fa-lg" aria-hidden="true"></i> -->
             </span>
           </div>
-          <a href="detail.html?=id${p._id}&g=${genre}"><h6>${p.name}</h6></a>
+          <a href="detail.html?id=${p._id}&g=${genre}"><h6>${p.name}</h6></a>
           <p>
             ${p.description}
           </p>
