@@ -93,7 +93,7 @@ window.onload = async () => {
       let payload = await response.json();
       if (response.ok) {
         let movie = payload.filter((p) => p["_id"] === id)[0];
-        console.log(movie);
+        // console.log(movie);
         document.querySelector(".text-center.mt-5").innerText = "Edit Movie";
         submitBtn.innerText = "Edit Movie";
         document.querySelector("#name").value = movie.name;
