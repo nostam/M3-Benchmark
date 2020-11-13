@@ -14,7 +14,7 @@ const errBadge = (msg) => {
   danger.innerText = msg;
   document.getElementById("navbar").append(danger);
 };
-const addToShelf = (p) => {
+const addToShelf = (p, genre) => {
   console.log(p);
   let movie = document.createElement("div");
   movie.classList.add("col", "mx-2", "my-5");
@@ -31,7 +31,7 @@ const addToShelf = (p) => {
               <!-- <i class="fa fa-plus fa-lg" aria-hidden="true"></i> -->
             </span>
           </div>
-          <a href="detail.html?=id${p._id}"><h6>${p.name}</h6></a>
+          <a href="detail.html?=id${p._id}&g=${genre}"><h6>${p.name}</h6></a>
           <p>
             ${p.description}
           </p>
@@ -76,7 +76,7 @@ const handleGenre = async (genre = anime) => {
         "justify-content-start"
       );
       shelf.appendChild(newGenreTitle);
-      payload.forEach((p) => newRow.appendChild(addToShelf(p)));
+      payload.forEach((p) => newRow.appendChild(addToShelf(p, genre)));
       shelf.appendChild(newRow);
     } else {
       contentLoadingSpinner.classList.toggle("d-none");
