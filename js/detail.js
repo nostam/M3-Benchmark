@@ -14,12 +14,12 @@ const detailsInfo = (obj) => {
       	  <span class="d-flex mt-auto align-self-end">Last modified at ${obj.updatedAt}</span>
       	  `;
 };
-const errBadge = (error) = {
+const errBadge = (error) => {
   let danger = document.createElement("div");
   danger.classList.add("alert", "alert-danger");
   danger.innerText = error;
   document.getElementsByTagName("h1").appendChild(danger);
-}
+};
 window.onload = async () => {
   let contentLoadingSpinner = document.getElementById("contentLoadingSpinner");
   contentLoadingSpinner.classList.toggle("d-none");
