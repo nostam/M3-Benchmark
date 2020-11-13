@@ -35,11 +35,11 @@ const submitMovie = async () => {
 
   let urlParmas = new URLSearchParams(document.location.search);
   let id = urlParmas.get("id");
-
+  let cat = document.getElementById("category");
   let info = {
     name: document.querySelector("#name").value,
     description: document.querySelector("#description").value,
-    category: document.querySelector("#category").value,
+    category: cat.options[cat.selectedIndex].text.toLowerCase(),
     imageUrl: document.querySelector("#imageUrl").value,
   };
 

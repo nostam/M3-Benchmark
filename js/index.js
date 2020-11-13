@@ -2,7 +2,18 @@ const myHeaders = new Headers({
   Authorization:
     "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFiZDRiMjRiY2RlMTAwMTc2MTZhOWQiLCJpYXQiOjE2MDUwOTY2MjYsImV4cCI6MTYwNjMwNjIyNn0.wnvHZoGWTVKKmnMosaLbRybRZBimbBtCTwikNc7HA_0",
 });
-
+const errBadge = (msg) => {
+  let danger = document.createElement("div");
+  danger.classList.add(
+    "alert",
+    "alert-danger",
+    "mt-2",
+    "col-md-6",
+    "offset-md-3"
+  );
+  danger.innerText = msg;
+  document.getElementById("navbar").append(danger);
+};
 const addToShelf = (p) => {
   // console.log(p);
   let card = document.createElement("div");
@@ -84,11 +95,11 @@ const sortIndex = function (payload, option) {
 };
 
 window.onload = async () => {
-  let contentLoadingSpinner = document.getElementById("contentLoadingSpinner");
-  contentLoadingSpinner.classList.toggle("d-none");
-  const url = "https://striveschool-api.herokuapp.com/api/product/";
+  // let contentLoadingSpinner = document.getElementById("contentLoadingSpinner");
+  // contentLoadingSpinner.classList.toggle("d-none");
+  const url = "https://striveschool-api.herokuapp.com/api/movies/";
   let shelf = document.querySelector("#shelf");
-  let sortBtn = document.querySelector("#sortBtn");
+  // let sortBtn = document.querySelector("#sortBtn");
   try {
     let response = await fetch(url, {
       method: "GET",
@@ -96,25 +107,21 @@ window.onload = async () => {
     });
 
     let payload = await response.json();
-    if (payload.length > 0) {
-      payload.sort((a, b) =>
-        a.updatedAt > b.updatedAt ? -1 : a.updatedAt < b.updatedAt ? 1 : 0
-      );
-      contentLoadingSpinner.classList.toggle("d-none");
-      document.getElementById("func").classList.toggle("d-none");
-      sortBtn.addEventListener("click", sortIndex);
-      payload.forEach((p) => shelf.appendChild(addToShelf(p)));
-      search(payload);
-    } else {
-      contentLoadingSpinner.classList.toggle("d-none");
-      shelf.innerHTML = "<h2>Sorry it's out of stock at the moment</h2>";
-    }
+    console.log(payload);
+    // if (payload.length > 0) {
+    //   payload.sort((a, b) =>
+    //     a.updatedAt > b.updatedAt ? -1 : a.updatedAt < b.updatedAt ? 1 : 0
+    //   );
+    //   contentLoadingSpinner.classList.toggle("d-none");
+    //   document.getElementById("func").classList.toggle("d-none");
+    //   sortBtn.addEventListener("click", sortIndex);
+    //   payload.forEach((p) => shelf.appendChild(addToShelf(p)));
+    //   search(payload);
+    // } else {
+    //   contentLoadingSpinner.classList.toggle("d-none");
+    //   shelf.innerHTML = "<h2>Sorry it's out of stock at the moment</h2>";
+    // }
   } catch (error) {
-    // alert("Something went wrong, see console log for details");
-    let danger = document.createElement("div");
-    danger.classList.add("alert", "alert-danger");
-    danger.innerText = error;
-    document.getElementsByTagName("h1").appendChild(danger);
-    // console.log(error);
+    errBadge(error);
   }
 };
