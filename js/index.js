@@ -15,24 +15,78 @@ const errBadge = (msg) => {
   document.getElementById("navbar").append(danger);
 };
 const addToShelf = (p) => {
-  // console.log(p);
-  let card = document.createElement("div");
-  card.classList.add("card", "mx-auto", "my-5");
-  card.style.width = "300px";
-  card.innerHTML = `
-    <img src="${p.imageUrl}" class="card-img-top">
-    <div class="card-body">
-      <h5 class="card-title d-flex justify-content-between"><span>${p.name}</span><span>${p.brand}</span></h5>
-      <p class="card-text">${p.description}</p>
-    </div>
-    <div class="card-footer d-flex justify-content-between">
-      <a href="./detail.html?id=${p._id}" class="btn btn-info">Detail</a>
-      <div class="d-flex align-items-center">
-        <span>Price: $${p.price}</span>
-        <a href="#" class="btn btn-warning ml-2">Buy</a>
+  console.log(p);
+  let movie = document.createElement("div");
+  movie.classList.add("col", "mx-2", "my-5");
+  movie.innerHTML = `
+    <div class="col mb-3 mb-lg-0 px-1">
+    <div class="strive-card position-relative">
+      <img class="movie-img rounded" src="${p.imageUrl}" />
+      <div class="infos-container">
+        <div class="infos-content">
+          <div class="d-flex mb-3">
+            <div class="play-btn gradient"></div>
+            <h6 class="mt-2 ml-2">Play</h6>
+            <span class="ml-auto plus">
+              <!-- <i class="fa fa-plus fa-lg" aria-hidden="true"></i> -->
+            </span>
+          </div>
+          <a href="detail.html?=id${p._id}"><h6>${p.name}</h6></a>
+          <p>
+            ${p.description}
+          </p>
+          <div class="movie-footer">
+            <span class="mr-2"></span>
+            <i class="fa fa-address-card fa-lg mr-2"></i>
+            <i class="fa fa-calendar-check-o fa-lg"></i>
+          </div>
+        </div>
       </div>
-    </div>`;
-  return card;
+    </div>
+  </div>`;
+  return movie;
+};
+const handleGenre = async (genre = anime) => {
+  console.log(genre);
+  let contentLoadingSpinner = document.getElementById("contentLoadingSpinner");
+  const url = "https://striveschool-api.herokuapp.com/api/movies/" + genre;
+  try {
+    let response = await fetch(url, {
+      method: "GET",
+      headers: myHeaders,
+    });
+    let payload = await response.json();
+    if (payload.length > 0) {
+      payload.sort((a, b) =>
+        a.updatedAt > b.updatedAt ? -1 : a.updatedAt < b.updatedAt ? 1 : 0
+      );
+      // document.getElementById("func").classList.toggle("d-none");
+      // sortBtn.addEventListener("click", sortIndex);
+      let newGenreTitle = document.createElement("h3");
+      newGenreTitle.innerHTML = `<span class="mt-4 text-white text-capitalize">${genre}</span>`;
+      let newRow = document.createElement("div");
+      newRow.classList.add(
+        "row",
+        "no-gutters",
+        "row-cols-1",
+        "row-cols-sm-2",
+        "row-cols-md-3",
+        "row-cols-lg-4",
+        "mb-4",
+        "justify-content-start"
+      );
+      shelf.appendChild(newGenreTitle);
+      payload.forEach((p) => newRow.appendChild(addToShelf(p)));
+      shelf.appendChild(newRow);
+    } else {
+      contentLoadingSpinner.classList.toggle("d-none");
+      shelf.innerHTML =
+        "<h2 class='text-white-50'>Sorry something went wrong</h2>";
+    }
+  } catch (error) {
+    errBadge(error);
+    console.log(error);
+  }
 };
 const search = (payload, criteria = "name") => {
   let input = document.querySelector(".form-control");
@@ -95,8 +149,8 @@ const sortIndex = function (payload, option) {
 };
 
 window.onload = async () => {
-  // let contentLoadingSpinner = document.getElementById("contentLoadingSpinner");
-  // contentLoadingSpinner.classList.toggle("d-none");
+  let contentLoadingSpinner = document.getElementById("contentLoadingSpinner");
+  contentLoadingSpinner.classList.toggle("d-none");
   const url = "https://striveschool-api.herokuapp.com/api/movies/";
   let shelf = document.querySelector("#shelf");
   // let sortBtn = document.querySelector("#sortBtn");
@@ -105,22 +159,18 @@ window.onload = async () => {
       method: "GET",
       headers: myHeaders,
     });
-
     let payload = await response.json();
-    console.log(payload);
-    // if (payload.length > 0) {
-    //   payload.sort((a, b) =>
-    //     a.updatedAt > b.updatedAt ? -1 : a.updatedAt < b.updatedAt ? 1 : 0
-    //   );
-    //   contentLoadingSpinner.classList.toggle("d-none");
-    //   document.getElementById("func").classList.toggle("d-none");
-    //   sortBtn.addEventListener("click", sortIndex);
-    //   payload.forEach((p) => shelf.appendChild(addToShelf(p)));
-    //   search(payload);
-    // } else {
-    //   contentLoadingSpinner.classList.toggle("d-none");
-    //   shelf.innerHTML = "<h2>Sorry it's out of stock at the moment</h2>";
-    // }
+    if (payload.length > 0) {
+      payload.sort((a, b) => (a > b ? -1 : a < b ? 1 : 0));
+      contentLoadingSpinner.classList.toggle("d-none");
+      for (let genre of payload) {
+        handleGenre(genre);
+      }
+    } else {
+      contentLoadingSpinner.classList.toggle("d-none");
+      shelf.innerHTML =
+        "<h2 class='text-white-50'>Sorry something went wrong</h2>";
+    }
   } catch (error) {
     errBadge(error);
   }
