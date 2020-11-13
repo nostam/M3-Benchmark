@@ -81,22 +81,31 @@ const submitMovie = async () => {
 };
 
 window.onload = async () => {
-  let urlParmas = new URLSearchParams(document.location.search);
-  let id = urlParmas.get("id");
-  if (id) {
+  let urlParams = new URLSearchParams(window.location.search); // creating a new instance of the URLSearchParams object
+  id = urlParams.get("id");
+  genre = urlParams.get("g");
+  if (id && genre) {
     try {
-      let response = await fetch(url + id, {
+      let response = await fetch(url + genre, {
         method: "GET",
         headers: myHeaders,
       });
       let payload = await response.json();
       if (response.ok) {
+        let movie = payload.filter((p) => p["_id"] === id)[0];
+        console.log(movie);
         document.querySelector(".text-center.mt-5").innerText = "Edit Movie";
         submitBtn.innerText = "Edit Movie";
-        document.querySelector("#name").value = payload.name;
-        document.querySelector("#description").value = payload.description;
-        document.querySelector("#category").value = payload.category;
-        document.querySelector("#imageUrl").value = payload.imageUrl;
+        document.querySelector("#name").value = movie.name;
+        document.querySelector("#description").value = movie.description;
+        let cat = document.querySelector("#category");
+        let arr = cat.options;
+        document.querySelector("#category").selectedIndex =        for (option of arr) {
+          if (option.value.toLowerCase() === genre) {
+            return option.index;
+          }
+        }
+        document.querySelector("#imageUrl").value = movie.imageUrl;
       } else {
         throw Error("ID does not match");
       }
