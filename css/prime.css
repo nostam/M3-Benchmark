@@ -1,0 +1,237 @@
+h3 {
+  font-size: 19px;
+  display: inline-block;
+}
+
+a {
+  color: #01a3db;
+}
+
+a:hover {
+  color: #14b5eb;
+}
+
+.prime-logo {
+  height: 19px;
+  position: relative;
+  top: 2px;
+}
+
+.strive-nav-bg {
+  background-color: #0f171e;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+}
+
+.carousel {
+  margin-top: 77px;
+}
+
+nav .dropdown-toggle {
+  color: rgba(255, 255, 255, 0.65);
+}
+nav .dropdown-toggle:hover,
+nav .dropdown-toggle:focus {
+  color: white;
+}
+
+/* user account btn */
+.btn-ghost.dropdown-toggle span {
+  display: inline-block;
+  width: 80px;
+  position: relative;
+  top: 0.5rem;
+  text-overflow: ellipsis; /*truncates the text over 80px overflow with three ...*/
+  white-space: nowrap;
+  overflow: hidden;
+}
+/*
+.nav-link {
+  font-weight: 600;
+}
+
+.navbar-expand-lg .nav-item .nav-link {
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0.05rem;
+  margin: 8px;
+}
+
+.navbar-expand-lg .nav-item.active .nav-link {
+  border-bottom: 1px solid white;
+} */
+
+.infos-container {
+  position: absolute;
+  right: 0;
+  left: 0;
+  color: white;
+  transform: translateY(-3.3rem);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 10;
+}
+
+.infos-content {
+  padding: 1rem 1.5rem;
+  padding-top: 38px;
+  background: linear-gradient(rgba(27, 37, 48, 0), #251b30 48px);
+  overflow: hidden;
+  border-bottom-right-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+
+.infos-content .plus {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  opacity: 0;
+  cursor: pointer;
+  transform: translateX(6px);
+  transition: all 0.3s ease 0.35s;
+}
+
+.infos-content .plus::before {
+  content: " ";
+  position: absolute;
+  background-color: #fff;
+  width: 2px;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 9;
+}
+
+.infos-content .plus::after {
+  content: " ";
+  position: absolute;
+  background-color: #fff;
+  height: 2px;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 9;
+}
+.play-btn:not(:hover) {
+  background: black;
+}
+
+.play-btn {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border: 2px solid white;
+  border-radius: 50%;
+  margin-right: 0.25rem;
+  cursor: pointer;
+  transform: translateX(-200px);
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(0.35, 0.27, 0.22, 1) 0.4s,
+    opacity 0.3s cubic-bezier(0.35, 0.27, 0.22, 1) 0.4s;
+}
+
+.play-btn:hover {
+  animation: gradientSlide 4s ease infinite;
+  border: 0px solid transparent;
+}
+
+.play-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 3px;
+  width: 0;
+  height: 0;
+  margin: auto;
+  border-style: solid;
+  border-width: 7px 0 7px 10px;
+  border-color: transparent transparent transparent #fff;
+}
+
+.gradient {
+  background: linear-gradient(
+    270deg,
+    rgb(175, 76, 125) 0%,
+    rgb(230, 160, 13) 100%
+  );
+  background-size: 400% 400%;
+}
+
+@keyframes gradientSlide {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.infos-content > div h6:first-of-type {
+  transform: translateX(-41px);
+  transition: transform 0.3s cubic-bezier(0.75, 0.32, 0.33, 0.99) 0.35s;
+}
+
+.infos-content p {
+  font-size: 0.8rem;
+  margin-bottom: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-0.25rem);
+  transition: all 0.3s ease 0.2s;
+}
+
+.infos-content .movie-footer {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: #8197a4;
+  opacity: 0;
+  transition: opacity 0.3s ease 0.3s;
+}
+
+.strive-card:hover .infos-container {
+  opacity: 1;
+  transform: translateY(-3rem);
+  pointer-events: initial;
+}
+
+.strive-card:hover .infos-content p {
+  opacity: 1;
+  transform: translateY(0);
+}
+.strive-card:hover .infos-content .movie-footer {
+  opacity: 1;
+}
+.strive-card:hover .play-btn,
+.strive-card:hover .plus,
+.strive-card:hover .infos-content h6 {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.movie-img {
+  object-fit: cover;
+  width: calc(100% - 1px);
+  height: 180px;
+  overflow: hidden;
+}
