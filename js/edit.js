@@ -18,21 +18,20 @@ const errBadge = (msg) => {
   danger.innerText = msg;
   document.querySelector("h5").append(danger);
 };
-
+const submitBtn = document.querySelector("#submitBtn span:last-of-type");
 const handleSubmit = (e) => {
-  document.querySelector(".alert-gander")
-    ? document.querySelector(".alert-gander").remove()
+  e.preventDefault(); // preventing the default browser event handling
+  document.querySelector(".alert-danger")
+    ? document.querySelector(".alert-danger").remove()
     : document.getElementById("category").selectedIndex !== 0
     ? submitMovie()
     : errBadge("Please select a movie category");
-  e.preventDefault(); // preventing the default browser event handling
 };
 
 const submitMovie = async () => {
   let spinner = document.querySelector("#loadingSpinner");
   spinner.classList.toggle("d-none"); // showing the spinner
-  document.querySelector("#submitBtn span:last-of-type").innerText =
-    "Submitting...";
+  submitBtn.innerText = "Submitting...";
 
   // input validation
   // let inputs = [...document.querySelectorAll("input")];
@@ -54,7 +53,7 @@ const submitMovie = async () => {
     category: document.querySelector("#category").value,
     imageUrl: document.querySelector("#imageUrl").value,
   };
-
+  console.log("before submit", info);
   try {
     let response;
     if (id) {
@@ -64,16 +63,15 @@ const submitMovie = async () => {
         headers: myHeaders,
       });
     } else {
-      body: JSON.stringify(info),
-        (se = await fetch(url, {
-          method: "POST",
-          headers: myHeaders,
-        }));
+      response = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify(info),
+        headers: myHeaders,
+      });
     }
     if (response.ok) {
       spinner.classList.toggle("d-none");
-      document.querySelector("#submitBtn span:last-of-type").innerText =
-        "Success!";
+      submitBtn.innerText = "Success!";
       alert(
         `Movie ${
           id ? "updated" : "created"
@@ -82,15 +80,13 @@ const submitMovie = async () => {
       location.assign("index.html");
     } else {
       spinner.classList.toggle("d-none");
-      document.querySelector("#submitBtn span:last-of-type").innerText =
-        "Submit Movie";
-      alert("Something went wrong!");
+      submitBtn.innerText = "Submit Movie";
+      errBadge("unexpected error");
     }
   } catch (error) {
-    let danger = document.createElement("div");
-    danger.classList.add("alert", "alert-danger");
-    danger.innerText = error;
-    document.getElementsByTagName("h1").appendChild(danger);
+    spinner.classList.toggle("d-none");
+    submitBtn.innerText = "Submit Movie";
+    errBadge(error);
   }
 };
 
@@ -105,9 +101,8 @@ window.onload = async () => {
       });
       let payload = await response.json();
       if (response.ok) {
-        document.querySelector(".text-center.mt-5").innerText = "Edit Product";
-        document.querySelector("#submitBtn span:last-of-type").innerText =
-          "Edit Product";
+        document.querySelector(".text-center.mt-5").innerText = "Edit Movie";
+        submitBtn.innerText = "Edit Movie";
         document.querySelector("#name").value = payload.name;
         document.querySelector("#description").value = payload.description;
         document.querySelector("#category").value = payload.category;
@@ -115,7 +110,7 @@ window.onload = async () => {
       } else {
         throw Error("ID does not match");
       }
-    } catch {
+    } catch (error) {
       errBadge(error);
     }
   }
