@@ -33,17 +33,6 @@ const submitMovie = async () => {
   spinner.classList.toggle("d-none"); // showing the spinner
   submitBtn.innerText = "Submitting...";
 
-  // input validation
-  // let inputs = [...document.querySelectorAll("input")];
-  // // inputs.flat(inputs.push([...document.querySelectorAll("textarea")]));
-  // if (inputs[3] < 0) {
-  //   throw Error("incorrect price");
-  // }
-  // if (Boolean(inputs.filter((e) => e.value === "").length === 0)) {
-  //   console.log("data all set");
-  // } else {
-  //   throw Error("empty field exists");
-  // } //replaced with required tag
   let urlParmas = new URLSearchParams(document.location.search);
   let id = urlParmas.get("id");
 
@@ -53,7 +42,7 @@ const submitMovie = async () => {
     category: document.querySelector("#category").value,
     imageUrl: document.querySelector("#imageUrl").value,
   };
-  console.log("before submit", info);
+
   try {
     let response;
     if (id) {
