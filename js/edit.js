@@ -76,6 +76,7 @@ const submitMovie = async () => {
     spinner.classList.toggle("d-none");
     submitBtn.innerText = "Submit Movie";
     errBadge(error);
+    console.log(error);
   }
 };
 
@@ -101,6 +102,7 @@ window.onload = async () => {
       }
     } catch (error) {
       errBadge(error);
+      console.log(error);
     }
   }
 };

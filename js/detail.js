@@ -4,44 +4,50 @@ const myHeaders = new Headers({
   "Content-Type": "application/json",
 });
 let id;
-const url = "https://striveschool-api.herokuapp.com/api/product/";
-const detailsInfo = (product) => {
-  return `<h4>${product.name}</h4>
-      	  <h5>Brand: ${product.brand}</h5>
+let g;
+const url = "https://striveschool-api.herokuapp.com/api/movies/";
+const detailsInfo = (obj) => {
+  return `<h4>${obj.name}</h4>
+      	  <span class="badge badge-pill badge-info d-inline-flex align-self-center" style="white-space:nowrap">${obj.category}</span>
       	  <hr>
-      	  <h6>${product.description}</h6>
-      	  <p class="d-flex mt-auto align-self-end">Last modified at ${product.updatedAt}</p>
+      	  <p class="text-left"style="white-space: pre-wrap">${obj.description}</p>
+      	  <span class="d-flex mt-auto align-self-end">Last modified at ${obj.updatedAt}</span>
       	  `;
 };
-
+const errBadge = (error) = {
+  let danger = document.createElement("div");
+  danger.classList.add("alert", "alert-danger");
+  danger.innerText = error;
+  document.getElementsByTagName("h1").appendChild(danger);
+}
 window.onload = async () => {
   let contentLoadingSpinner = document.getElementById("contentLoadingSpinner");
   contentLoadingSpinner.classList.toggle("d-none");
   let urlParams = new URLSearchParams(window.location.search); // creating a new instance of the URLSearchParams object
-  id = urlParams.get("id"); // saving the id retrieved from the url address bar
+  id = urlParams.get("id");
+  genre = urlParams.get("g");
   try {
-    let response = await fetch(url + id, {
+    let response = await fetch(url + genre, {
       method: "GET",
       headers: myHeaders,
     });
-    let product = await response.json();
+    let payload = await response.json();
     if (response.ok) {
       contentLoadingSpinner.classList.toggle("d-none");
+      let movie = payload.filter((p) => p["_id"] === id)[0];
       document.getElementById("details").classList.toggle("d-none");
-      document.getElementById("productImg").src = product.imageUrl;
-      document.getElementById("details-info").innerHTML += detailsInfo(product);
+      document.getElementById("image").src = movie.imageUrl;
+      document.getElementById("details-info").innerHTML += detailsInfo(movie);
       document.getElementsByClassName(
         "modal-body"
-      )[0].innerHTML = `Are you sure you want to delete <strong>${product.name} from the shelf?</strong>`;
+      )[0].innerHTML = `Are you sure you want to delete <strong>${movie.name} from the shelf?</strong>`;
     } else {
       contentLoadingSpinner.classList.toggle("d-none");
       throw Error("ID does not match");
     }
   } catch (error) {
-    let danger = document.createElement("div");
-    danger.classList.add("alert", "alert-danger");
-    danger.innerText = error;
-    document.getElementsByTagName("h1").appendChild(danger);
+    errBadge(error);
+    console.log(error);
   }
 };
 
@@ -58,13 +64,11 @@ const handleDelete = async () => {
       alert("Something went wrong!");
     }
   } catch (error) {
-    let danger = document.createElement("div");
-    danger.classList.add("alert", "alert-danger");
-    danger.innerText = error;
-    document.getElementsByTagName("h1").appendChild(danger);
+    errBadge(error);
+    console.log(error);
   }
 };
 
 const handleEdit = () => {
-  location.href = "edit.html?id=" + id;
+  location.href = "edit.html?id=" + id + "&g=" + genre;
 };

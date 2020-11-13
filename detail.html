@@ -15,11 +15,15 @@
       integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
       crossorigin="anonymous"
     />
+    <!-- <link
+    rel="stylesheet"
+    href="./css/index.css">
+  /> -->
   </head>
 
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
-      <a class="navbar-brand" href="./index.html">Product</a>
+      <a class="navbar-brand" href="./index.html">Strivix</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -39,15 +43,15 @@
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./backoffice.html">Add new product</a>
+            <a class="nav-link" href="./backoffice.html">Movie Detail</a>
           </li>
         </ul>
       </div>
     </nav>
 
     <div class="container text-center">
-      <h1>STRIVE WEB STORE</h1>
-      <h2 class="mt-5">Product details</h2>
+      <h1>Stivix</h1>
+      <h2 class="mt-5">Movie details</h2>
       <div
         class="text-center mt-5 d-none"
         id="contentLoadingSpinner"
@@ -61,72 +65,71 @@
         ></div>
       </div>
       <div class="row my-5 d-none" id="details">
-        <div class="col-md-6"><img id="productImg" /></div>
-        <div class="col-md-6 d-flex flex-column" id="details-info">
-          <div class="row d-flex align-self-center mb-4">
-            <input
-              type="button"
-              class="btn btn-info"
-              value="EDIT"
-              onclick="handleEdit()"
-            />
-            <!-- <input
-              type="button"
-              class="btn btn-danger"
-              value="DELETE"
-              onclick="handleDelete()"
-            /> -->
-            <!-- Button trigger modal -->
-            <button
-              type="button"
-              class="btn btn-danger"
-              data-toggle="modal"
-              data-target="#staticBackdrop"
-            >
-              DELETE
-            </button>
+        <div class="col-md-6"><img id="image" class="img-fluid" /></div>
+        <div class="col-md-6 d-flex flex-column" id="details-info"></div>
+        <div class="row d-flex align-self-end ml-auto mr-3">
+          <input
+            type="button"
+            class="btn btn-info"
+            value="EDIT"
+            onclick="handleEdit()"
+          />
+          <!-- <input
+            type="button"
+            class="btn btn-danger"
+            value="DELETE"
+            onclick="handleDelete()"
+          /> -->
+          <!-- Button trigger modal -->
+          <button
+            type="button"
+            class="btn btn-danger"
+            data-toggle="modal"
+            data-target="#staticBackdrop"
+          >
+            DELETE
+          </button>
 
-            <!-- Modal -->
-            <div
-              class="modal fade"
-              id="staticBackdrop"
-              data-backdrop="static"
-              data-keyboard="false"
-              tabindex="-1"
-              aria-labelledby="staticBackdropLabel"
-              aria-hidden="true"
-            >
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">
-                      Delete Confirmation
-                    </h5>
-                    <button
-                      type="button"
-                      class="close"
-                      data-dismiss="modal"
-                      aria-label="Close"
-                    >
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body badge-danger">...</div>
-                  <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-secondary"
-                      data-dismiss="modal"
-                    >
-                      Close
-                    </button>
-                    <input
-                      type="button"
-                      class="btn btn-danger"
-                      value="CONFIRM DELETE"
-                      onclick="handleDelete()"
-                    />
-                  </div>
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="staticBackdrop"
+            data-backdrop="static"
+            data-keyboard="false"
+            tabindex="-1"
+            aria-labelledby="staticBackdropLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">
+                    Delete Confirmation
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body badge-danger">...</div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <input
+                    type="button"
+                    class="btn btn-danger"
+                    value="CONFIRM DELETE"
+                    onclick="handleDelete()"
+                  />
                 </div>
               </div>
             </div>
