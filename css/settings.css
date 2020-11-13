@@ -78,3 +78,23 @@ hr {
   line-height: 2rem;
   color: #aaa;
 }
+/*Twitter*/
+.fa-twitter {
+  color: #1da1f2;
+}
+/*Facebook*/
+.fa-facebook-square {
+  color: #3b5998;
+}
+/*instagram*/
+.fa-instagram {
+  color: #e1306c;
+}
+/*YouTube*/
+.fa-youtube {
+  color: #ff0000;
+}
+/*LINE*/
+.fa-line {
+  color: #00c300;
+}

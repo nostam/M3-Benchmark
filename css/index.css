@@ -57,25 +57,25 @@ a:visited {
 /*Twitter*/
 .fa-twitter {
   color: #1da1f2;
-  filter: grayscale(50%);
+  filter: grayscale(25%);
 }
 /*Facebook*/
 .fa-facebook-square {
   color: #3b5998;
-  filter: grayscale(50%);
+  filter: grayscale(25%);
 }
 /*instagram*/
 .fa-instagram {
   color: #e1306c;
-  filter: grayscale(50%);
+  filter: grayscale(25%);
 }
 /*YouTube*/
 .fa-youtube {
   color: #ff0000;
-  filter: grayscale(50%);
+  filter: grayscale(25%);
 }
 /*LINE*/
 .fa-line {
   color: #00c300;
-  filter: grayscale(50%);
+  filter: grayscale(25%);
 }
